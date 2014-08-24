@@ -1,0 +1,27 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hbo.com/employee"
+           targetNamespace="http://hbo.com/employee"
+           elementFormDefault="qualified">
+    <xs:element name="GetEmployeeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="EmployeeId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GetEmployeeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Employee" type="EmployeeType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Employee" type="EmployeeType"/>
+    <xs:complexType name="EmployeeType">
+        <xs:sequence>
+            <xs:element name="EmployeeId" type="xs:string"/>
+            <xs:element name="EmployeeName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
