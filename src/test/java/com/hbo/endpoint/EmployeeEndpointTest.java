@@ -8,13 +8,13 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.xml.transform.StringSource;
 
+import javax.inject.Inject;
 import javax.xml.transform.Source;
 
 import static org.mockito.Matchers.anyString;
@@ -31,17 +31,17 @@ import static org.springframework.ws.test.server.ResponseMatchers.payload;
 @ContextConfiguration("classpath:spring-ws-servlet.xml")
 public class EmployeeEndpointTest {
 
-    @Autowired
+    @Inject
     private ApplicationContext applicationContext;
 
     private MockWebServiceClient mockClient;
 
     @Spy
-    @Autowired
+    @Inject
     private EmployeeService employeeService;
 
     @InjectMocks
-    @Autowired
+    @Inject
     private EmployeeEndpoint employeeEndpoint;
 
     @Before

@@ -5,11 +5,12 @@ import com.hbo.employee.GetEmployeeResponse;
 import com.hbo.employee.ObjectFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
+
+import javax.inject.Inject;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -22,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @ContextConfiguration("classpath:test-context.xml")
 public class EmployeeEndpointITest {
 
-    @Autowired
+    @Inject
     private WebServiceTemplate webServiceTemplate;
 
     @Test
