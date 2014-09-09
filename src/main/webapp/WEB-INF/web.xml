@@ -10,7 +10,7 @@
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>WEB-INF/spring-ws-servlet.xml</param-value>
+            <param-value>classpath:spring-ws-servlet.xml</param-value>
         </init-param>
         <init-param>
             <param-name>transformWsdlLocations</param-name>
