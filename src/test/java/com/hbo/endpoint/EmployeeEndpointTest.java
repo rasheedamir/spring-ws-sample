@@ -17,10 +17,10 @@ import org.springframework.xml.transform.StringSource;
 import javax.inject.Inject;
 import javax.xml.transform.Source;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.payload;
 
@@ -84,7 +84,10 @@ public class EmployeeEndpointTest {
 
     @Test
     public void exceptionDuringProcessing() throws Exception {
-        when(employeeService.getEmployee(anyString())).thenThrow(new MyBusinessException("oops"));
+        //given
+        //when(employeeService.getEmployee(anyString())).thenThrow(new MyBusinessException("oops"));
+        //bdd style
+        given(employeeService.getEmployee(anyString())).willThrow(new MyBusinessException("oops"));
 
         Source requestPayload = new StringSource(
                 "<emp:GetEmployeeRequest xmlns:emp=\"http://hbo.com/employee\">\n" +
@@ -96,7 +99,11 @@ public class EmployeeEndpointTest {
                 "   <faultstring xml:lang=\"en\">oops</faultstring>\n" +
                 "</SOAP-ENV:Fault>");
 
-        mockClient.sendRequest(withPayload(requestPayload)).andExpect(payload(responsePayload));
+        //when
+        mockClient
+                .sendRequest(withPayload(requestPayload))
+        //then
+                .andExpect(payload(responsePayload));
         verify(employeeService, times(1)).getEmployee(anyString());
     }
 }
